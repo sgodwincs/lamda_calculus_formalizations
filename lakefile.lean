@@ -3,21 +3,26 @@ open Lake DSL
 
 require aesop from git "https://github.com/JLimperg/aesop"
 
-package e {
+package lambda_calculus {
   moreLeanArgs := #["-D autoImplicit=false"]
-  -- add package configuration options here
+  moreServerArgs := #["-D autoImplicit=false"]
 }
 
 lean_lib E {
-  -- add library configuration options here
+}
+
+lean_lib EF {
 }
 
 lean_lib Vector {
-  -- add library configuration options here
 }
 
-@[default_target]
 lean_exe e {
+  root := `Main
+  buildType := .minSizeRel
+}
+
+lean_exe ef {
   root := `Main
   buildType := .minSizeRel
 }
