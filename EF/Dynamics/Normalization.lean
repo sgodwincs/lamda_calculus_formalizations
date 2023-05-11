@@ -77,7 +77,7 @@ end WeaklyNormalizing
 private def HereditarilyNormalizing {Γ : Context} {τ : Ty} (e : Γ ⊢ τ) : Type :=
   match τ with
   | .number | .string => e ⇓
-  | .arrow τ _ => (e ⇓) × ∀ (e' : Γ ⊢ τ), HereditarilyNormalizing e' → HereditarilyNormalizing (Expr.application e e')
+  | .arrow τ _ => (e ⇓) × ∀ {e' : Γ ⊢ τ}, HereditarilyNormalizing e' → HereditarilyNormalizing (Expr.application e e')
 
 namespace HereditarilyNormalizing
 
@@ -98,8 +98,8 @@ private def preserves_forward_step
   | .number | .string => WeaklyNormalizing.preserves_forward_step hn tr
   | .arrow τ _ =>
       let ⟨wn, preserves⟩ := hn
-      let preserves (e'' : Γ ⊢ τ) (hn'' : HereditarilyNormalizing e'') : HereditarilyNormalizing (Expr.application e' e'') :=
-        preserves_forward_step (preserves e'' hn'') (Transition.ξ_application₁ tr)
+      let preserves {e'' : Γ ⊢ τ} (hn'' : HereditarilyNormalizing e'') : HereditarilyNormalizing (Expr.application e' e'') :=
+        preserves_forward_step (preserves hn'') (Transition.ξ_application₁ tr)
 
       ⟨WeaklyNormalizing.preserves_forward_step wn tr, preserves⟩
 
@@ -121,8 +121,8 @@ private def preserves_backward_step
   | .arrow τ _ =>
       let ⟨wn, preserves⟩ := hn
 
-      let preserves (e'' : Γ ⊢ τ) (hn'' : HereditarilyNormalizing e'') : HereditarilyNormalizing (Expr.application e e'') :=
-        preserves_backward_step (preserves e'' hn'') (Transition.ξ_application₁ tr)
+      let preserves {e'' : Γ ⊢ τ} (hn'' : HereditarilyNormalizing e'') : HereditarilyNormalizing (Expr.application e e'') :=
+        preserves_backward_step (preserves hn'') (Transition.ξ_application₁ tr)
 
       ⟨WeaklyNormalizing.preserves_backward_step wn tr, preserves⟩
 
@@ -151,7 +151,7 @@ private def hereditarily_normalizing
   | .number num => ⟨Transitionᵣₜ.refl _, Value.number.normal⟩
   | .string s => ⟨Transitionᵣₜ.refl _, Value.string.normal⟩
   | @Expr.abstraction _ τ _ e =>
-      let preserves (e' : Δ ⊢ τ) (hn' : HereditarilyNormalizing e') : HereditarilyNormalizing (Expr.application ((⟪ σ ⟫) (Expr.abstraction e)) e') := by
+      let preserves {e' : Δ ⊢ τ} (hn' : HereditarilyNormalizing e') : HereditarilyNormalizing (Expr.application ((⟪ σ ⟫) (Expr.abstraction e)) e') := by
         let { e' := e'', normalizes := { mtr := mtr', norm := norm'' } } := hn'.weakly_normalizing
         let σ' : Subst (τ :: Γ) Δ := Subst.cons e'' σ
         let hn_σ' : HereditarilyNormalizingSubst σ'
@@ -174,7 +174,7 @@ private def hereditarily_normalizing
   | .application e₁ e₂ =>
       let ⟨_, preserves⟩ := hereditarily_normalizing e₁ hn_σ
       let hn₂ := hereditarily_normalizing e₂ hn_σ
-      preserves _ hn₂
+      preserves hn₂
 
 -- Unfortunately, just the theorem above isn't quite enough to finish out the entire proof. The problem is that we want
 -- to be able to use the identity substitution for the above theorem, but we first have to prove that it is a
@@ -247,7 +247,7 @@ private def applicationᵣ_hn
   cases τ with
   | number | string => exact _wn
   | arrow τ τ' =>
-      let preserves (e' : Γ ⊢ τ) (hn : HereditarilyNormalizing e') : HereditarilyNormalizing (Expr.application (applicationᵣ exs (Expr.var a)) e') :=
+      let preserves {e' : Γ ⊢ τ} (hn : HereditarilyNormalizing e') : HereditarilyNormalizing (Expr.application (applicationᵣ exs (Expr.var a)) e') :=
       by
         let ex : WnExpr Γ := ⟨hn.weakly_normalizing⟩
         
@@ -270,7 +270,7 @@ private def var_hereditarily_normalizing
   match τ with
   | .number | .string => ⟨Transitionᵣₜ.refl _, (Neutral.var a).normal⟩
   | .arrow τ _ =>
-      let preserves (e' : Γ ⊢ τ) (hn' : HereditarilyNormalizing e') : HereditarilyNormalizing (Expr.application (Expr.var a) e') :=
+      let preserves {e' : Γ ⊢ τ} (hn' : HereditarilyNormalizing e') : HereditarilyNormalizing (Expr.application (Expr.var a) e') :=
         applicationᵣ_hn [⟨hn'.weakly_normalizing⟩] a
 
       ⟨⟨Transitionᵣₜ.refl _, (Neutral.var a).normal⟩, preserves⟩

@@ -235,7 +235,7 @@ theorem subst_id_right
   funext (fun _ => funext lemma)
 
 @[simp]
-theorem subst_let
+theorem subst_abstraction
   {Γ Δ : Context} {τ τ' : Ty}
   (σ : Subst Γ Δ)
   (e : τ :: Γ ⊢ τ') :
