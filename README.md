@@ -11,7 +11,7 @@ Right now, the plan is to proceed through the [PFPL](http://www.cs.cmu.edu/~rwh/
 
 2. [**EF**](EF/)
 
-3. [**T**](T/)
+3. [**System T**](T/)
 
 Note that a lot of the code is almost exactly the same between implementations. This is intentional. For the purposes of
 actually getting stuff done, it's much faster to just copy-paste rather than trying to abstract out common parts. This

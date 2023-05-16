@@ -1,4 +1,4 @@
-# **EF**
+# **System T**
 
 This is a Lean 4 implementation of the **EF** lambda calculus variant described in chapter 8 of [PFPL](http://www.cs.cmu.edu/~rwh/pfpl.html). Well, it differs slightly. **EF** in the book extends **E** but I didn't want to have to carry over all the extra expressions like `plus` and `times`, so I removed a few of them that weren't important to the topic of the chapter. This does however make the language essentially useless computationally speaking as you have abstractions and applications, but there's nothing you can really compute with them.
 
