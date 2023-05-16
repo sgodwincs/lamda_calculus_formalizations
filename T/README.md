@@ -1,6 +1,6 @@
 # **System T**
 
-This is a Lean 4 implementation of the **System T** lambda calculus variant described in chapter 8 of [PFPL](http://www.cs.cmu.edu/~rwh/pfpl.html).
+This is a Lean 4 implementation of the **System T** lambda calculus variant described in chapter 9 of [PFPL](http://www.cs.cmu.edu/~rwh/pfpl.html).
 
 ## Notable design decisions include:
  * Reduction:
