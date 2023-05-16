@@ -14,15 +14,8 @@ lean_lib E {
 lean_lib EF {
 }
 
+lean_lib T {
+}
+
 lean_lib Vector {
-}
-
-lean_exe e {
-  root := `Main
-  buildType := .minSizeRel
-}
-
-lean_exe ef {
-  root := `Main
-  buildType := .minSizeRel
 }
