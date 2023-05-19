@@ -82,6 +82,7 @@ def backward_steps
 
 end WeaklyNormalizing
 
+-- Logical predicate
 private def HereditarilyNormalizing {Γ : Context} {τ : Ty} (e : Γ ⊢ τ) : Type :=
   match τ with
   | .nat => e ⇓
@@ -232,7 +233,6 @@ private def applicationᵣ_hn
 
 namespace Neutral
 
--- Logical predicate
 private def hereditarily_normalizing
   {Γ : Context} {τ : Ty} {e : Γ ⊢ τ}
   (neut : Neutral e) :
