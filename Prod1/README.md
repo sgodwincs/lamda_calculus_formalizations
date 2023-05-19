@@ -1,6 +1,6 @@
 # **Prod1**
 
-This is a Lean 4 implementation of the nullary and binary product (no specificname given in book) lambda calculus variant described in chapter 10 of [PFPL](http://www.cs.cmu.edu/~rwh/pfpl.html).
+This is a Lean 4 implementation of the nullary and binary product (no specific name given in book) lambda calculus variant described in chapter 10 of [PFPL](http://www.cs.cmu.edu/~rwh/pfpl.html).
 
 ## Notable design decisions include:
  * Reduction:
