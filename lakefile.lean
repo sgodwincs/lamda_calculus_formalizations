@@ -17,5 +17,8 @@ lean_lib EF {
 lean_lib T {
 }
 
+lean_lib Prod1 {
+}
+
 lean_lib Vector {
 }
