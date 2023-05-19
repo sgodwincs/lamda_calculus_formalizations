@@ -46,4 +46,4 @@ One thing I noticed during the implementation was that I'm not allowing all the 
 
 ## Next
 
-Up next will be implementing a variant with finite product types. I expect this could give me a significant amount of trouble. I may have to deal with permutations of list, sub-lists, etc. and it could get messy fast.
+Up next will be implementing a variant with finite product types. I expect this could give me a significant amount of trouble. I may have to deal with permutations of lists, sub-lists, etc. and it could get messy fast.
