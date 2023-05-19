@@ -39,3 +39,7 @@ In the book, **Prod1** doesn't have abstractions or applications, but I kept the
 ### Normalization
 
 As expected, the only place that gave any trouble was normalization. I had to once again generalize the proof that all neutral terms are hereditarily normalizing. Before, the only higher type eliminator was application, but now projections were added. I ended up having to consider any sequence of eliminators, including `application`, `proj₁`, and `proj₂`. It didn't take too much work, and now I have a framework setup for adding additional eliminators. In particular, I'm hoping it will allow me to easily do the normalization proof for both finite product times and binary sum types which are the next things I plan to do.
+
+### Neutral Terms
+
+One thing I noticed during the implementation was that I'm not allowing all the reductions possible to occur. For example, I only allow projections to reduce if it's on a value pair. Theoretically I could allow it to reduce even if the pair was neutral, but it turned out I would require additional constraints on the projection neutral forms to ensure that the underlying expression was not a pair. Otherwise, it would be a neutral term that reduced which obviously isn't right. I decided to just stick with requiring it to be values (and I noticed I did something similar for the recursor in **System T**). Maybe in the next variant I'll allow eliminator to always apply, even on neutral forms.
