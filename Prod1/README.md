@@ -43,3 +43,7 @@ As expected, the only place that gave any trouble was normalization. I had to on
 ### Neutral Terms
 
 One thing I noticed during the implementation was that I'm not allowing all the reductions possible to occur. For example, I only allow projections to reduce if it's on a value pair. Theoretically I could allow it to reduce even if the pair was neutral, but it turned out I would require additional constraints on the projection neutral forms to ensure that the underlying expression was not a pair. Otherwise, it would be a neutral term that reduced which obviously isn't right. I decided to just stick with requiring it to be values (and I noticed I did something similar for the recursor in **System T**). Maybe in the next variant I'll allow eliminator to always apply, even on neutral forms.
+
+## Next
+
+Up next will be implementing a variant with finite product types. I expect this could give me a significant amount of trouble. I may have to deal with permutations of list, sub-lists, etc. and it could get messy fast.
