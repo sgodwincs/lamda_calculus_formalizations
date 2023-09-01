@@ -38,7 +38,7 @@ In the book, **Prod1** doesn't have abstractions or applications, but I kept the
 
 ### Normalization
 
-As expected, the only place that gave any trouble was normalization. I had to once again generalize the proof that all neutral terms are hereditarily normalizing. Before, the only higher type eliminator was application, but now projections were added. I ended up having to consider any sequence of eliminators, including `application`, `proj₁`, and `proj₂`. It didn't take too much work, and now I have a framework setup for adding additional eliminators. In particular, I'm hoping it will allow me to easily do the normalization proof for both finite product times and binary sum types which are the next things I plan to do.
+As expected, the only place that gave any trouble was normalization. I had to once again generalize the proof that all neutral terms are hereditarily normalizing. Before, the only higher type eliminator was application, but now projections were added. I ended up having to consider any sequence of eliminators, including `application`, `proj₁`, and `proj₂`. It didn't take too much work, and now I have a framework setup for adding additional eliminators. In particular, I'm hoping it will allow me to easily do the normalization proof for both finite product types and binary sum types which are the next things I plan to do.
 
 ### Neutral Terms
 
