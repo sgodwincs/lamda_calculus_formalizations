@@ -1,3 +1,5 @@
+import Aesop
+
 import Stlc.Statics
 
 open Statics
@@ -9,12 +11,12 @@ inductive Value {Γ : Context} : {τ : Ty} → (Γ ⊢ τ) → Type where
       {τ : Ty} {e : Γ ⊢ τ} :
       Value e →
       Value (Expr.inl e)
-  
+
   | inr
       {τ : Ty} {e : Γ ⊢ τ} :
       Value e →
       Value (Expr.inr e)
-  
+
   | abstraction
       {τ τ' : Ty} {e : τ :: Γ ⊢ τ'} :
       Value (Expr.abstraction e)
@@ -85,7 +87,7 @@ mutual
       {Γ : Context} {τ : Ty} {e : Γ ⊢ τ} :
       Neutral e →
       Normal e
-  
+
   | value
       {Γ : Context} {τ : Ty} {e : Γ ⊢ τ} :
       Value e →
@@ -96,22 +98,22 @@ mutual
   | var
       {Γ : Context} {τ : Ty} (a : Γ ∋ τ) :
       Neutral (Expr.var a)
-  
+
   | nullary_case
       {Γ : Context} {e : Γ ⊢ Ty.void} :
       Neutral e →
       Neutral (Expr.nullary_case e)
-  
+
   | inl
       {Γ : Context} {τₗ τᵣ : Ty} {e : Γ ⊢ τₗ} :
       Neutral e →
       Neutral (@Expr.inl Γ τₗ τᵣ e)
-  
+
   | inr
       {Γ : Context} {τₗ τᵣ : Ty} {e : Γ ⊢ τᵣ} :
       Neutral e →
       Neutral (@Expr.inr Γ τₗ τᵣ e)
-  
+
   | binary_case
       {Γ : Context} {τ τₗ τᵣ : Ty} {e : Γ ⊢ Ty.sum τₗ τᵣ} {eₗ : (τₗ :: Γ) ⊢ τ} {eᵣ : (τᵣ :: Γ) ⊢ τ} :
       Neutral e →
@@ -123,7 +125,7 @@ mutual
       Normal e₂ →
       Neutral (Expr.application e₁ e₂)
   deriving Repr
-  
+
 end
 
 mutual

@@ -1,5 +1,3 @@
-import Aesop
-
 namespace Statics
 
 inductive Ty where

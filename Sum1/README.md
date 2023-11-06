@@ -71,5 +71,5 @@ technical work, and Lean honestly does not make it easy as it just straight up d
 want to be able to do. It also requires a lot of manual proofs of termination whenever proving anything about records
 which just isn't fun to do.
 
-For now, I'll probably move forward with chapter 13, which is generic programming. I'm expecting it will be a lot of fun
+For now, I'll probably move forward with chapter 14, which is generic programming. I'm expecting it will be a lot of fun
 and probably quite challenging for me!

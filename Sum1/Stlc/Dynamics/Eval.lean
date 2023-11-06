@@ -12,7 +12,8 @@ inductive Env : Context -> Type where
   | nil  : Env []
   | cons {Γ : Context} {τ : Ty} {e : Γ ⊢ τ} : (val : Value e) -> (env : Env Γ) -> Env (τ :: Γ)
 
-infixr:67 " :: " => Env.cons
+notation "[]ₑ" => Env.nil
+infixr:67 " ::ₑ " => Env.cons
 
 namespace Env
 
@@ -27,8 +28,8 @@ end Env
 mutual
 
 def Env.subst {Γ : Context} : Env Γ → ClosingSubst Γ
-  | val :: env, _, .here => (Value.close env val).1
-  | _ :: env, _, .there a => Env.subst env a
+  | val ::ₑ env, _, .here => (Value.close env val).1
+  | _ ::ₑ env, _, .there a => Env.subst env a
 
 def Value.close {Γ : Context} {τ : Ty} {e : Γ ⊢ τ} (env : Env Γ) : Value e → Σ e' : ⊢ τ, Value e'
   | .inl val => ⟨_, Value.inl (val.close env).2⟩
@@ -48,7 +49,7 @@ structure EvalResult {Γ : Context} (τ : Ty) (env : Env Γ) where
   {e : Γ ⊢ τ}
   val : Value e
 
-abbrev ClosedEvalResult (τ : Ty) := EvalResult τ Env.nil
+abbrev ClosedEvalResult (τ : Ty) := EvalResult τ []ₑ
 
 def _root_.Statics.Expr.eval_closed {τ : Ty} (e : ⊢ τ) : Σ e' : ⊢ τ, Value e' :=
   match e.progress with

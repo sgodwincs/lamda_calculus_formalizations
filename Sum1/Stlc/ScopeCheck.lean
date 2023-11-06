@@ -1,3 +1,4 @@
+import Aesop
 import Vect
 
 import Stlc.Bound
@@ -22,7 +23,7 @@ inductive Scoping : {n : Nat} → Binder n → Syntax.Expr → Expr n → Type w
       x ≠ y →
       Scoping Γ (Syntax.Expr.var x) (Expr.var i) →
       Scoping (y ::ᵥ Γ) (Syntax.Expr.var x) (Expr.var i.succ)
-  
+
   | nullary_case
       {n : Nat} {Γ : Binder n} {τ : Ty} {e : Syntax.Expr} {e' : Expr n} :
       Scoping Γ e e' →
@@ -37,7 +38,7 @@ inductive Scoping : {n : Nat} → Binder n → Syntax.Expr → Expr n → Type w
       {n : Nat} {Γ : Binder n} {τₗ τᵣ : Ty} {e : Syntax.Expr} {e' : Expr n} :
       Scoping Γ e e' →
       Scoping Γ (Syntax.Expr.inr τₗ τᵣ e) (Expr.inr τₗ τᵣ e')
-  
+
   | binary_case
       {n : Nat} {Γ : Binder n} {x₁ x₂ : Ident} {e eₗ eᵣ : Syntax.Expr} {e' : Expr n} {eₗ' eᵣ' : Expr n.succ} :
       Scoping Γ e e' →
@@ -100,13 +101,13 @@ theorem irrelevant
   | inr =>
       cases s'
       aesop
-  | binary_case => 
+  | binary_case =>
       cases s'
       aesop
-  | abstraction => 
+  | abstraction =>
       cases s'
       aesop
-  | application => 
+  | application =>
       cases s'
       aesop
 
